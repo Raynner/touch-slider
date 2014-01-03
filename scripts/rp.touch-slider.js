@@ -23,7 +23,16 @@
             //update sliders width to main div width
             fixSlidersIn($this.wrap, $this.width());
             $(window).resize(function () {
-                fixSlidersIn($this.wrap, $this.width());
+                //fixSlidersIn($this.wrap, $this.width());
+                totalwidth=0;
+                $this.wrap.children().each(function () {
+                    totalwidth += parseFloat($(this).width());
+                    $(this).width($this.width());
+                    $(this).css("float", "left");
+                });
+                $this.wrap.width(totalwidth);
+                
+                navigation.keepPos();
             });
 
             //put sliders side by side after fix divs width
@@ -34,23 +43,12 @@
             $this.wrap.width(totalwidth);
 
 
-
             $(this).on("swipeleft", function () {
-                if (navigation.index < len - 1) {
-                    navigation.index++
-                    navigation.changePos();
-                    var elem = $this.wrap.children("div:eq(" + navigation.index + ")");
-                    Transition(elem);
-                }
+                navigation.next();
             });
 
             $(this).on("swiperight", function () {
-                if (navigation.index > 0) {
-                    navigation.index--;
-                    navigation.changePos();
-                    var elem = $this.wrap.children("div:eq(" + navigation.index + ")");
-                    Transition(elem);
-                }
+                navigation.prev();
             });
 
 
@@ -78,7 +76,7 @@
 
         //methods
         function addNav() {
-            slider.append(nav.append(ul));
+            slider.after(nav.append(ul));
 
             for (var i = 0; i < len; i++) {
                 var li = $('<li></li>');
@@ -103,6 +101,28 @@
 
         $this.show = function () {
             nav.show();
+        };
+        
+        $this.next = function(){
+            if ($this.index < len - 1) {
+                $this.index++
+                $this.changePos();
+                var elem = slider.wrap.children("div:eq(" + $this.index + ")");
+                Transition(elem);
+            };
+        }
+        $this.prev = function(){
+            if ($this.index > 0) {
+                $this.index--;
+                $this.changePos();
+                var elem = slider.wrap.children("div:eq(" + $this.index + ")");
+                Transition(elem);
+            }
+        }
+        
+        $this.keepPos = function(){
+            var elem = slider.wrap.children("div:eq(" + $this.index + ")");
+            Transition(elem);
         }
         
     }
@@ -110,7 +130,7 @@
     //animate slider
     function Transition(elem) {
         var elemOffset = elem.offset().left - elem.parent().offset().left;
-        elem.parent().parent().animate({ scrollLeft: elemOffset }, 600);
+        elem.parent().parent().stop().animate({ scrollLeft: elemOffset }, 600);
     }
 
 
