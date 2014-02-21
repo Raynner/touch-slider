@@ -2,22 +2,21 @@
 
 ###bugs
 - [x] panels out of position when the window resized
-- [x] still not working on safari and ie9+) last panel disappearing when the window is resized.
+- [ ] still not working on safari and ie9+) last panel disappearing when the window is resized.
 - [ ] iphone orientation didn’t resize
+- [x] margin nav change when window resize
 
 
 ###parameters
 
 name    | type   | description
 ------- | ------ | ----------- 
-`nav`     | `true`   | If `true`, build a list of links to navigate between panels
+nav     | `string`  | A string describing the type of navigation. Options: `dots`, `arrows`, `both` or `none`.
 
 
 **looking after**
-
 name         | type      | description
 ------------ | --------- | ----------- 
-nav          | `string`  | A string describing the type of navigation. Options: `dots`, `arrows`, `both` or `none`.
 navObj       | `string`  | A string with object ID. If exists, build a  list of links to navigate using this object.
 descriptions | `array`   | Array with panels description
 easing       | `string`  | A string indicating which easing function to use for the transition. Need jQuery.easing plugin
