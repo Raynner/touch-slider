@@ -4,10 +4,10 @@
     $.fn.sliderTouch = function (params) {
         
         //merge default and user parameters
-        params = $.extend({ nav: true },params);
+        params = $.extend({ nav: "dots" },params);
 
         this.each(function () {
-            //config varr
+            //config var
             var $this = $(this);
             $this.wrap = $this.children(".slider-wrap");
             var len = $this.wrap.children().length;
@@ -16,25 +16,20 @@
 
 
             //show navigation element
-            if (params.nav == true) {
-                navigation.show();
+            switch(params.nav){
+                case "dots":
+                    navigation.addDots();
+                    break;
+                case "arrows":
+                    navigation.addArrows();
+                    break;
+                case "both":
+                    navigation.addDots();
+                    navigation.addArrows();
+                    break;
             }
 
-            //update sliders width to main div width
-            fixSlidersIn($this.wrap, $this.width());
-            $(window).resize(function () {
-                //fixSlidersIn($this.wrap, $this.width());
-                totalwidth=0;
-                $this.wrap.children().each(function () {
-                    totalwidth += parseFloat($(this).width());
-                    $(this).width($this.width());
-                    $(this).css("float", "left");
-                });
-                $this.wrap.width(totalwidth);
-                
-                navigation.keepPos();
-            });
-
+            
             //put sliders side by side after fix divs width
             $this.wrap.children().each(function () {
                 totalwidth += parseFloat($(this).width());
@@ -49,6 +44,22 @@
 
             $(this).on("swiperight", function () {
                 navigation.prev();
+            });
+
+
+            //update sliders width to main div width
+            fixSlidersIn($this.wrap, $this.width());
+            $(window).resize(function () {
+                //fixSlidersIn($this.wrap, $this.width());
+                totalwidth=0;
+                $this.wrap.children().each(function () {
+                    totalwidth += parseFloat($(this).width());
+                    $(this).width($this.width());
+                    $(this).css("float", "left");
+                });
+                $this.wrap.width(totalwidth);
+                
+                navigation.keepPos();
             });
 
 
@@ -70,68 +81,87 @@
         //properties
         var $this = this;
         $this.index = 0;
-        var nav = $('<nav></nav>');
-        var ul = $('<ul></ul>');
+        var dots = $('<nav class="dots"><ul></ul></nav>');
+        var arrows = $('<nav class="arrows"><ul></ul></nav>')
 
 
         //methods
-        function addNav() {
-            slider.after(nav.append(ul));
+        $this.addDots = function() {
+            slider.append(dots);
 
             for (var i = 0; i < len; i++) {
                 var li = $('<li></li>');
-                ul.append(li);
+                dots.children("ul").append(li);
             }
-            nav.hide();
+
+            $this.changePos($this.index);
+
+            dots.children("ul").children("li").bind('click', function () {         
+                $this.index = $(this).index();
+                $this.changePos($this.index);
+                DoTransition()
+            });
         }
-        addNav();
+
+        $this.addArrows = function(){
+            slider.append(arrows);
+            var prev = $('<li class="prev"></li>');
+            arrows.children("ul").append(prev);
+            var next = $('<li class="next"></li>');
+            arrows.children("ul").append(next);
+
+            arrows.children("ul").children("li").bind('click', function () { 
+                if($(this).hasClass("prev")){
+                    $this.index = Math.max(0,$this.index-1);
+                }else{
+                    $this.index = Math.min($this.index+1,len-1);
+                }
+                $this.changePos($this.index);
+                DoTransition()
+            });
+
+        }
+        
 
         $this.changePos = function () {
-            ul.children("li").removeClass("on");
-            ul.children("li:eq(" + $this.index + ")").addClass("on");
+            dots.children("ul").children("li").removeClass("on");
+            dots.children("ul").children("li:eq(" + $this.index + ")").addClass("on");
         }
-        $this.changePos();
-
-        ul.children("li").bind('click', function () {
-            $this.index = $(this).index();
-            $this.changePos($this.index);
-            var elem = slider.wrap.children("div:eq(" + $this.index + ")");
-            Transition(elem)
-        });
 
         $this.show = function () {
             nav.show();
         };
         
+
         $this.next = function(){
             if ($this.index < len - 1) {
                 $this.index++
                 $this.changePos();
-                var elem = slider.wrap.children("div:eq(" + $this.index + ")");
-                Transition(elem);
+                DoTransition();
             };
         }
         $this.prev = function(){
             if ($this.index > 0) {
                 $this.index--;
                 $this.changePos();
-                var elem = slider.wrap.children("div:eq(" + $this.index + ")");
-                Transition(elem);
+                DoTransition();
             }
         }
         
         $this.keepPos = function(){
+            DoTransition();
+        }
+
+         //animate slider
+        function DoTransition() {
             var elem = slider.wrap.children("div:eq(" + $this.index + ")");
-            Transition(elem);
+            var elemOffset = elem.offset().left - elem.parent().offset().left;
+            elem.parent().parent().stop().animate({ scrollLeft: elemOffset }, 600);
         }
         
     }
 
-    //animate slider
-    function Transition(elem) {
-        var elemOffset = elem.offset().left - elem.parent().offset().left;
-        elem.parent().parent().stop().animate({ scrollLeft: elemOffset }, 600);
-    }
+   
 
 
 })(jQuery);

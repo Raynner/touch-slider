@@ -45,9 +45,9 @@ And finally just add few styles to customize
 .slider-wrap {height:inherit;}
 .box {margin:70px auto 0; width:500px; height:260px;}
 
-nav {position: absolute; width:100%; margin-top: -40px;}
+nav {position: relative; width:100%; margin-top: -40px;}
 nav ul {text-align: center; list-style: none; margin: 0; padding: 0;}
 nav ul li{display: inline-block; width: 10px; height: 10px; border-radius: 10px; background: #565656; margin: 0 2px;cursor: pointer;}
 nav ul li.on{background-color:white;}
 
-```
+``` 

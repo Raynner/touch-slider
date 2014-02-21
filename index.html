@@ -1,35 +1,39 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="en">
 <head>
-    <title></title>
-    <meta name="viewport" content="width=device-width; initial-scale=1, maximum-scale=1">
-    
-    <link href="style/style.css" rel="stylesheet" />
-    <script src="scripts/jquery-1.10.2.min.js"></script>
-    <script src="scripts/jquery.mobile.custom.min.js"></script>
-    <script src="scripts/rp.touch-slider.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="scripts/jquery-1.10.2.min.js"></script>
+	<script src="scripts/jquery.mobile.custom.min.js"></script>
+	<script src="scripts/rp.touch-slider.js"></script>
+	<script>
+		$(document).ready(function () {
+	        $('.slider').sliderTouch({nav:"both"});
+	    });
+	</script>
+	<style>
+		.slider {margin:auto;overflow:hidden;width:100%; height:400px; background-color:red/*#221f1f*/;}
+		.slider .slider-wrap {height:inherit; overflow: hidden;}
+		.slider .box {margin:70px auto 0; width:500px; height:260px;opacity:0.5;}
 
-            $('.slider').sliderTouch({ nav: true });
+		.slider nav.dots {position:absolute; width:100%; margin-top: -40px;}
+		.slider nav.dots ul {text-align: center; list-style: none; margin: 0; padding: 0;}
+		.slider nav.dots ul li{display: inline-block; width: 10px; height: 10px; border-radius: 10px; background: #565656; margin: 0 2px;cursor: pointer;}
+		.slider nav.dots ul li.on{background-color:white;}
 
-        });
-    </script>
+		.slider nav.arrows {position:absolute; width:100%; margin-top: 40px;}
+		.slider nav.arrows ul {text-align: center; list-style: none; margin: 0; padding: 0;}
+		.slider nav.arrows ul li{display: inline-block;  padding: 10px; margin:0 10px; background: red; cursor: pointer;}
+	</style>
 </head>
 <body>
-    <header>
-        <h1>RpTouchSlider. A responsive slider based on jQuery Mobile Touch Events</h1>
-        <p>Supported Browsers: Chrome, IE7+, Firefox, Safari</p>
-    </header>
-    <div class="slider">
-        <div class="slider-wrap">
-            <div><div class="box" style="background-color: #e51b3b; "></div></div>
-            <div><div class="box" style="background-color: #bb94b7; "></div></div>
-            <div><div class="box" style="background-color: #7cb5d2; "></div></div>
-            <div><div class="box" style="background-color: #104577; "></div></div>
-        </div>
-    </div>
-        
-    
+	<div class="slider">
+	    <div class="slider-wrap">
+	        <div><div class="box">slider 1</div></div>
+	        <div><div class="box">slider 2</div></div>
+	        <div><div class="box">slider 3</div></div>
+	        <div><div class="box">slider 4</div></div>
+	    </div>
+	</div>
 </body>
 </html>
