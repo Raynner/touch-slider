@@ -1,0 +1,12 @@
+
+
+#fbcomments, .fb_iframe_widget, .fb_iframe_widget[style], 
+.fb_iframe_widget iframe[style], #fbcomments iframe[style] 
+{width: 100% !important;}
+
+
+
+
+.fb_iframe_widget iframe html{background-color: blue !important;}
+
+.text-area{background-color: red !important;}
