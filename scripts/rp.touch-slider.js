@@ -4,7 +4,11 @@
     $.fn.sliderTouch = function (params) {
         
         //merge default and user parameters
-        params = $.extend({ nav: "dots" },params);
+        params = $.extend({ nav: "dots", 
+                            prevValue:"", 
+                            nextValue:"" }
+                            ,params);
+
 
         this.each(function () {
             //config var
@@ -21,11 +25,11 @@
                     navigation.addDots();
                     break;
                 case "arrows":
-                    navigation.addArrows();
+                    navigation.addArrows(params.prevValue, params.nextValue);
                     break;
                 case "both":
                     navigation.addDots();
-                    navigation.addArrows();
+                    navigation.addArrows(params.prevValue, params.nextValue);
                     break;
             }
 
@@ -96,21 +100,21 @@
 
             $this.changePos($this.index);
 
-            dots.children("ul").children("li").bind('click', function () {         
+             $(".dots").children("ul").children("li").bind('click', function () {         
                 $this.index = $(this).index();
                 $this.changePos($this.index);
                 DoTransition()
             });
         }
 
-        $this.addArrows = function(){
+        $this.addArrows = function(prevValue, nextValue){
             slider.append(arrows);
-            var prev = $('<li class="prev"></li>');
+            var prev = $('<li class="prev">'+prevValue+'</li>');
             arrows.children("ul").append(prev);
-            var next = $('<li class="next"></li>');
+            var next = $('<li class="next">'+nextValue+'</li>');
             arrows.children("ul").append(next);
 
-            arrows.children("ul").children("li").bind('click', function () { 
+            $(".arrows").children("ul").children("li").bind('click', function () { 
                 if($(this).hasClass("prev")){
                     $this.index = Math.max(0,$this.index-1);
                 }else{
