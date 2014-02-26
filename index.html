@@ -8,7 +8,14 @@
 	<script src="scripts/rp.touch-slider.js"></script>
 	<script>
 		$(document).ready(function () {
-	        $('.slider').sliderTouch({nav:"both", prevValue:"<", nextValue:">"});
+	        $('.slider').sliderTouch({
+	        	nav:"both", 
+	        	prevValue:"<", 
+	        	nextValue:">",
+	        	autoPlay:true,
+	        	interval:2000
+
+	        });
 	    });
 	</script>
 	<style>

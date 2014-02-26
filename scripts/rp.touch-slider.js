@@ -1,4 +1,6 @@
 ﻿
+/*Raynner Patry - www.raynner.com.br*/
+
 (function ($) {
 
     $.fn.sliderTouch = function (params) {
@@ -6,7 +8,9 @@
         //merge default and user parameters
         params = $.extend({ nav: "dots", 
                             prevValue:"", 
-                            nextValue:"" }
+                            nextValue:"",
+                            autoPlay:false,
+                            interval:4000 }
                             ,params);
 
 
@@ -55,7 +59,7 @@
             fixSlidersIn($this.wrap, $this.width());
             $(window).resize(function () {
                 //fixSlidersIn($this.wrap, $this.width());
-                totalwidth=0;
+                totalwidth = 0;
                 $this.wrap.children().each(function () {
                     totalwidth += parseFloat($(this).width());
                     $(this).width($this.width());
@@ -66,6 +70,12 @@
                 navigation.keepPos();
             });
 
+            //autoPlay
+            if(params.autoPlay == true){
+                var timer = new TimerFor(navigation, params.interval);
+                timer.startAutoPlay();
+            }
+            
 
         });
         return this;
@@ -79,12 +89,35 @@
         });
     }
 
+    function TimerFor(navigation, interval){
+        var $this = this;
+        var timer = null;
+
+        $this.startAutoPlay = function() {
+            if (timer !== null) return;
+            timer = setInterval(function () {
+                navigation.next();
+                if(navigation.index == navigation.len-1){
+                    navigation.index = -1;
+                }
+            }, interval); 
+        }
+
+
+         $this.stopAutoPlay = function() {
+            clearInterval(timer);
+            timer = null
+        };
+    }
+
+
     //Navigation object
     function Navigation(slider, len) {
         
         //properties
         var $this = this;
         $this.index = 0;
+        $this.len = len;
         var dots = $('<nav class="dots"><ul></ul></nav>');
         var arrows = $('<nav class="arrows"><ul></ul></nav>')
 
