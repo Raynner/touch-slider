@@ -65,16 +65,16 @@ $(document).ready(function () {
 And finally, just add few styles to customize the slider. You can style it anyway you want
 ```CSS
 .slider {margin:auto;overflow:hidden;width:100%; height:400px; background-color:#221f1f;}
-        .slider .slider-wrap {height:inherit; overflow: hidden;}
-        .slider .box {margin:70px auto 0; width:500px; height:260px;}
+.slider .slider-wrap {height:inherit; overflow: hidden;}
+.slider .box {margin:70px auto 0; width:500px; height:260px;}
 
-        .slider nav.dots {position:absolute; width:100%; margin-top: -40px;}
-        .slider nav.dots ul {text-align: center; list-style: none; margin: 0; padding: 0;}
-        .slider nav.dots ul li{display: inline-block; width: 10px; height: 10px; border-radius: 10px; background: #565656; margin: 0 2px;cursor: pointer;}
-        .slider nav.dots ul li.on{background-color:white;}
+.slider nav.dots {position:absolute; width:100%; margin-top: -40px;}
+.slider nav.dots ul {text-align: center; list-style: none; margin: 0; padding: 0;}
+.slider nav.dots ul li{display: inline-block; width: 10px; height: 10px; border-radius: 10px; background: #565656; margin: 0 2px;cursor: pointer;}
+.slider nav.dots ul li.on{background-color:white;}
 
-        .slider nav.arrows {position:absolute; width:100%; margin-top: -40px}
-        .slider nav.arrows ul {text-align: center; list-style: none; margin: 0; padding: 0;}
-        .slider nav.arrows ul li{display: inline-block;  padding: 10px; margin:0 10px; background: #f16272; cursor: pointer; color:#fff;}
+.slider nav.arrows {position:absolute; width:100%; margin-top: -40px}
+.slider nav.arrows ul {text-align: center; list-style: none; margin: 0; padding: 0;}
+.slider nav.arrows ul li{display: inline-block;  padding: 10px; margin:0 10px; background: #f16272; cursor: pointer; color:#fff;}
 
 ``` 
