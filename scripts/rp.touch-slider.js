@@ -58,7 +58,7 @@
             //update sliders width to main div width
             fixSlidersIn($this.wrap, $this.width());
             $(window).resize(function () {
-                //fixSlidersIn($this.wrap, $this.width());
+                fixSlidersIn($this.wrap, $this.width());
                 totalwidth = 0;
                 $this.wrap.children().each(function () {
                     totalwidth += parseFloat($(this).width());
