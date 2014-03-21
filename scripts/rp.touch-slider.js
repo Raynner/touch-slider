@@ -58,7 +58,7 @@
             //update sliders width to main div width
             fixSlidersIn($this.wrap, $this.width());
             $(window).resize(function () {
-                //fixSlidersIn($this.wrap, $this.width());
+                fixSlidersIn($this.wrap, $this.width());
                 totalwidth = 0;
                 $this.wrap.children().each(function () {
                     totalwidth += parseFloat($(this).width());
@@ -133,7 +133,7 @@
 
             $this.changePos($this.index);
 
-             $(".dots").children("ul").children("li").bind('click', function () {         
+             slider.find(".dots").children("ul").children("li").bind('click', function () {         
                 $this.index = $(this).index();
                 $this.changePos($this.index);
                 DoTransition()
@@ -147,7 +147,7 @@
             var next = $('<li class="next">'+nextValue+'</li>');
             arrows.children("ul").append(next);
 
-            $(".arrows").children("ul").children("li").bind('click', function () { 
+            slider.find(".arrows").children("ul").children("li").bind('click', function () { 
                 if($(this).hasClass("prev")){
                     $this.index = Math.max(0,$this.index-1);
                 }else{
@@ -161,8 +161,8 @@
         
 
         $this.changePos = function () {
-            dots.children("ul").children("li").removeClass("on");
-            dots.children("ul").children("li:eq(" + $this.index + ")").addClass("on");
+            slider.find(".dots").children("ul").children("li").removeClass("on");
+            slider.find(".dots").children("ul").children("li:eq(" + $this.index + ")").addClass("on");
         }
 
         $this.show = function () {
@@ -197,8 +197,5 @@
         }
         
     }
-
-   
-
 
 })(jQuery);

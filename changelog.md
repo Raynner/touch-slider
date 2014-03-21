@@ -1,28 +1,33 @@
-## change log
+
+
+## rp.touch-slider change log
 
 ###bugs
 - [x] panels out of position when the window resized
-- [ ] still not working on safari and ie9+) last panel disappearing when the window is resized.
-- [ ] iphone orientation didn’t resize
+- [x] still not working on safari and ie9+ last panel disappearing when the window is resized.
+- [ ] iphone orientation didnâ€™t resize
 - [x] margin nav change when window resize
 
 
 ###parameters
 
-name    | type   | description
-------- | ------ | ----------- 
-nav     | `string`  | A string describing the type of navigation. Options: `dots`, `arrows`, `both` or `none`.
+name         | type      | description
+------------ | --------- | ----------- 
+nav          | `string`  | A string describing the type of navigation. Options: `dots`, `arrows`, `both` or `none`.
+prevValue    | `string`  | A value that will be inserted into the `previous` link.
+nextValue    | `string`  | A value that will be inserted into the `next` link.
+autoPlay     | `bol`     | If true, the panels will be changed automatically
+interval     | `int`     | A number determining how long the panel will be displayed
+
 
 
 **looking after**
 name         | type      | description
 ------------ | --------- | ----------- 
 navObj       | `string`  | A string with object ID. If exists, build a  list of links to navigate using this object.
-descriptions | `array`   | Array with panels description
 easing       | `string`  | A string indicating which easing function to use for the transition. Need jQuery.easing plugin
-duration     | `int`     | A number determining how long the panels animation will run.
-autoPlay     | `bol`     | If true, the panels will be changed automatically
-delay        | `int`     | A number determining how long the panel will be displayed 
+duration     | `int`     | A number determining the animation time
+
 
 
 
