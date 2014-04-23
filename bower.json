@@ -8,7 +8,7 @@
   "description": "A responsive slider based on jQuery Mobile Touch Events.",
   "main": "scripts/rp.touch-slider.js",
   "dependencies": {
-    "jquery": "~1.10.2",
+    "jquery": "~1.10.2"
   },
   "keywords": [
     "touch",
