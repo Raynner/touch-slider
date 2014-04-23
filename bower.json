@@ -1,0 +1,28 @@
+{
+  "name": "rp.touch-slider",
+  "version": "0.0.1",
+  "homepage": "http://raynner.com/touch-slider/",
+  "authors": [
+    "Raynner Patry <raynner@gmail.com>"
+  ],
+  "description": "A responsive slider based on jQuery Mobile Touch Events.",
+  "main": "scripts/rp.touch-slider.js",
+  "dependencies": {
+    "jquery": "~1.10.2",
+  },
+  "keywords": [
+    "touch",
+    "slider",
+    "slider",
+    "slides",
+    "mobile"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
